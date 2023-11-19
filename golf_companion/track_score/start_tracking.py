@@ -98,9 +98,28 @@ def __add_player():
     player = __player_class.Player(player_name, int(player_skill), player_handicap)
     
     return player
-    
 
-def track_score(players=[], course=None):
+def __start_tracking(players, course, num_holes):
+    for i in range(num_holes):
+        check = input("Enter 0 to exit, anything else will continue: ")
+        if __check_value_is_number(check) == True:
+            if int(check) == 0:
+                __exit()
+        print(f"\nHole {i+1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards\n")
+        for player in players:
+            if player.score == None:
+                player.score = {}
+            player_score = None
+            while player_score == None:
+                player_score = input(f"\nEnter the final score for {player.name}: ")
+                if __check_value_is_number(player_score) == False:
+                    player_score = None
+                else:
+                    player.score.update({(i+1):int(player_score)})
+                    
+    return players
+
+def track_score(players = [], course = None, num_holes = None):
     if course == None:
         course = __choose_course()
     if course == None:
@@ -118,8 +137,36 @@ def track_score(players=[], course=None):
     else:
         num_players = len(players)
     
-    return [course, players]
+    while num_holes == None:
+        num_holes = input("\nHow many holes are you going to track. Enter '0' to exit: ")
+        check_num_holes = __check_value_is_number(num_holes)
+        if check_num_holes == True:
+            if int(num_holes) == 0:
+                __exit()
+            else:
+                num_holes = int(num_holes)
+        else:
+            num_holes = None
+    
+    players = __start_tracking(players, course, num_holes)
+    
+    print_summary = None
+    while print_summary == None:
+        print_summary = input("\nDo you wish to see the final scores?\n1: Yes \n2: No \n3: Exit \n")
+        if __check_value_is_number(print_summary) == True:
+            if int(print_summary) == 3:
+                __exit()
+            elif int(print_summary) not in [1,2]:
+                print_summary = None
+    if int(print_summary) == 1:
+        print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}\n")
+        for player in players:
+            print(player)
+            print(f"\nTotal Score: {sum(player.score.values())}")
+            if player.handicap != None:
+                print(f"Adjusted Score: {sum(player.score.values()) - int(player.handicap)}\n")
+    return [course,players]
 
 b = track_score()
-for i in b[1]:
-    print(i)
+#for i in b[1]:
+#    print(i)
