@@ -1,7 +1,8 @@
 import sys
 import pandas as pd
 
-import __course_class
+# import __course_class
+from golf_companion import __course_class
 from golf_companion import __player_class
 
 def __exit():
@@ -69,8 +70,8 @@ def __choose_course():
 
 def __add_player():
     player_name = None
-    while player_name == None or player_name == "" or player_name == " ":
-        player_name = input("\nEnter player name: \n*Note: Cannot be empty \n")
+    while player_name == None or player_name == "" or player_name == " " or (player_name.replace(" ", "")).isalpha() == False:
+        player_name = input("\nEnter player name: \n*Note: Cannot be empty and only alphabets allowed. \n")
     
     player_skill = None
     while player_skill == None or player_skill == "" or player_skill == " ":
@@ -99,62 +100,69 @@ def __add_player():
     
     return player
 
-def __start_tracking(players, course, num_holes):
-    for i in range(num_holes):
-        check = input("Enter 0 to exit, anything else will continue: ")
+def __track_hole(players, course, hole_num, print_header = True):
+    if print_header == True:
+        check = input("\nEnter 0 to exit, anything else will continue: ")
         if __check_value_is_number(check) == True:
             if int(check) == 0:
                 __exit()
-        print(f"\nHole {i+1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards\n")
-        for player in players:
-            if player.score == None:
-                player.score = {}
-            player_score = None
-            while player_score == None:
-                player_score = input(f"\nEnter the final score for {player.name}: ")
-                if __check_value_is_number(player_score) == False:
-                    player_score = None
-                else:
-                    player.score.update({(i+1):int(player_score)})
-                    
+        print(f"\nHole {hole_num + 1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards\n")
+    for player in players:
+        if player.score == None:
+            player.score = {}
+        player_score = None
+        while player_score == None:
+            player_score = input(f"Enter the final score for {player.name}: ")
+            if __check_value_is_number(player_score) == False:
+                player_score = None
+            else:
+                player.score.update({(hole_num+1):int(player_score)})
     return players
 
 def __print_summary(players, course):
     print_summary = None
+    final_score = []
+    total_score = []
+    adjusted_score = []
+    for i in range(len(players)):
+        adjusted_score.append(None)
     while print_summary == None:
-        print_summary = input("\nDo you wish to see the final scores?\n1: Yes \n2: No \n3: Exit \n")
+        print_summary = input("\nDo you wish to see a full breakdown of scores?\n1: Yes \n2: No \n3: Exit \n")
         if __check_value_is_number(print_summary) == True:
             if int(print_summary) == 3:
                 __exit()
             elif int(print_summary) not in [1,2]:
                 print_summary = None
+    for i in range(len(players)):
+        total_score.append(sum(players[i].score.values()))
+        if players[i].handicap != None:
+            adjusted_score[i] = sum(players[i].score.values()) - int(players[i].handicap)
     if int(print_summary) == 1:
+        border = "-" * len(f"Hole {i + 1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards")
+        print("\n" + border)
         print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
-        for player in players:
-            print(player)
-            print(f"\nTotal Score: {sum(player.score.values())}")
-            if player.handicap != None:
-                print(f"Adjusted Score: {sum(player.score.values()) - int(player.handicap)}")
-    return
-
-def track_score(players = [], course = None, num_holes = None):
-    if course == None:
-        course = __choose_course()
-    if course == None:
-        print("No Course Choosen!")
-    if players == []:
-        num_players = "a"
-        while num_players.isnumeric() == False:
-            num_players = input("\nEnter the number of players or enter '0' to exit: ")
-            if __check_value_is_number(num_players) == True:
-                if int(num_players) == 0:
-                    __exit()
-        for i in range(int(num_players)):
-            print(f"\nPlayer {i+1}")
-            players.append(__add_player())
+        print(border + "\n")
+        for i in range(len(players)):
+            print(players[i])
+            print(f"\nTotal Score: {total_score[i]}")
+            if players[i].handicap != None:
+                print(f"Adjusted Score: {adjusted_score[i]}")
     else:
-        num_players = len(players)
-    
+        print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
+        for i in range(len(players)):
+            border = "-" * len(f"Hole {i + 1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards")
+            print("\n" + border)
+            print(f"\nPlayer: {players[i].name} \nTotal Score: {total_score[i]} | Adjusted Score: {adjusted_score[i]}")
+            print(border + "\n")
+    for i in range(len(players)):
+        if adjusted_score[i] == None:
+            final_score.append(total_score[i])
+        else:
+            final_score.append(adjusted_score[i])
+    return final_score
+
+def __check_num_holes():
+    num_holes = None
     while num_holes == None:
         num_holes = input("\nHow many holes are you going to track. Enter '0' to exit: ")
         check_num_holes = __check_value_is_number(num_holes)
@@ -165,8 +173,38 @@ def track_score(players = [], course = None, num_holes = None):
                 num_holes = int(num_holes)
         else:
             num_holes = None
+    return num_holes
+
+def __add_game_players(players=[]):
+    num_players = "a"
+    while num_players.isnumeric() == False:
+        num_players = input("\nEnter the number of players or enter '0' to exit: ")
+        if __check_value_is_number(num_players) == True:
+            if int(num_players) == 0:
+                __exit()
+    for i in range(int(num_players)):
+        border = "-" * len(f"Player {i+1}")
+        print("\n" + border)
+        print(f"Player {i+1}")
+        print(border)
+        players.append(__add_player())
+    return players
+
+def track_score(players = [], course = None, num_holes = None):
+    if course == None:
+        course = __choose_course()
+    if course == None:
+        print("No Course Choosen!")
+    if players == []:
+        players = __add_game_players()
+    else:
+        num_players = len(players)
     
-    players = __start_tracking(players, course, num_holes)
+    if num_holes == None:
+        num_holes = __check_num_holes()
+
+    for i in range(num_holes):
+        players = __track_hole(players, course, i)
     
     print_summary = __print_summary(players, course)
     
@@ -174,6 +212,6 @@ def track_score(players = [], course = None, num_holes = None):
     
     return [players, course]
 
-b = track_score()
+#b = track_score()
 #for i in b[1]:
 #    print(i)
