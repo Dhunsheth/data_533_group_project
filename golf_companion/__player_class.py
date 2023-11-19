@@ -29,11 +29,11 @@ class Player:
         beginner_multiplier = 0.6  # 60% of professional yardage
         intermediate_multiplier = 0.8  # 80% of professional yardage
         if skill == 1:
-            return self.professional_yardages
+            return Player.professional_yardages
         elif skill == 2:
-            return {club: int(yardage * intermediate_multiplier) for club, yardage in professional_yardages.items()}
+            return {club: int(yardage * intermediate_multiplier) for club, yardage in Player.professional_yardages.items()}
         elif skill == 3: 
-            return {club: int(yardage * beginner_multiplier) for club, yardage in professional_yardages.items()}
+            return {club: int(yardage * beginner_multiplier) for club, yardage in Player.professional_yardages.items()}
 
     def __str__(self):
         skill_level = "Professional" if self.skill == 1 else "Intermediate" if self.skill == 2 else "Amateur"

@@ -1,7 +1,8 @@
 import sys
 import pandas as pd
-import __course_class
 
+import __course_class
+from golf_companion import __player_class
 
 def __exit():
     raise SystemExit("\nExiting the program")
@@ -69,11 +70,11 @@ def __choose_course():
 def __add_player():
     player_name = None
     while player_name == None or player_name == "" or player_name == " ":
-        player_name = input("\nEnter player name: \n*Note: Cannot be empty\n ")
+        player_name = input("\nEnter player name: \n*Note: Cannot be empty \n")
     
     player_skill = None
     while player_skill == None or player_skill == "" or player_skill == " ":
-        player_skill = input("\nChoose player skill. \nEnter: \n1: Professional \n2: Intermediate \n3: Amateur \n0: Exit")
+        player_skill = input("\nChoose player skill. \nEnter: \n1: Professional \n2: Intermediate \n3: Amateur \n0: Exit \n")
         if __check_value_is_number(player_skill) == True:
             if int(player_skill) not in [0,1,2,3]:
                 player_skill = None
@@ -81,27 +82,44 @@ def __add_player():
                 __exit()                
         else:
             player_skill = None
-    player = Player
+    
+    player_handicap = None
+    while player_handicap == None:
+        player_handicap = input("\nEnter player handicap or press Enter to skip \n*Note: Handicap must be a number \n")
+        if player_handicap != "" and player_handicap != " " and player_handicap.isnumeric() == False:
+            player_handicap = None
+    
+    check_handicap = __check_value_is_number(player_handicap)
+    if check_handicap == False:
+        player_handicap = None
+    else:
+        player_handicap = int(player_handicap)
+        
+    player = __player_class.Player(player_name, int(player_skill), player_handicap)
+    
+    return player
     
     
-def track_score(players=None, course=None):
+def track_score(players=[], course=None):
     if course == None:
         course = __choose_course()
     if course == None:
         print("No Course Choosen!")
-    
-    
-    if players = None:
+    if players == []:
         num_players = "a"
-        while num_players == False:
+        while num_players.isnumeric() == False:
             num_players = input("\nEnter the number of players or enter '0' to exit: ")
             if __check_value_is_number(num_players) == True:
                 if int(num_players) == 0:
                     __exit()
         for i in range(int(num_players)):
+            print(f"\nPlayer {i+1}")
             players.append(__add_player())
     else:
         num_players = len(players)
     
-    return course
+    return [course, players]
 
+b = track_score()
+for i in b[1]:
+    print(i)
