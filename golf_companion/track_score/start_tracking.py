@@ -99,7 +99,7 @@ def __add_player():
     
     return player
     
-    
+
 def track_score(players=[], course=None):
     if course == None:
         course = __choose_course()
