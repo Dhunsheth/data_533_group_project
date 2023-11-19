@@ -119,6 +119,24 @@ def __start_tracking(players, course, num_holes):
                     
     return players
 
+def __print_summary(players, course):
+    print_summary = None
+    while print_summary == None:
+        print_summary = input("\nDo you wish to see the final scores?\n1: Yes \n2: No \n3: Exit \n")
+        if __check_value_is_number(print_summary) == True:
+            if int(print_summary) == 3:
+                __exit()
+            elif int(print_summary) not in [1,2]:
+                print_summary = None
+    if int(print_summary) == 1:
+        print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
+        for player in players:
+            print(player)
+            print(f"\nTotal Score: {sum(player.score.values())}")
+            if player.handicap != None:
+                print(f"Adjusted Score: {sum(player.score.values()) - int(player.handicap)}")
+    return
+
 def track_score(players = [], course = None, num_holes = None):
     if course == None:
         course = __choose_course()
@@ -150,22 +168,11 @@ def track_score(players = [], course = None, num_holes = None):
     
     players = __start_tracking(players, course, num_holes)
     
-    print_summary = None
-    while print_summary == None:
-        print_summary = input("\nDo you wish to see the final scores?\n1: Yes \n2: No \n3: Exit \n")
-        if __check_value_is_number(print_summary) == True:
-            if int(print_summary) == 3:
-                __exit()
-            elif int(print_summary) not in [1,2]:
-                print_summary = None
-    if int(print_summary) == 1:
-        print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}\n")
-        for player in players:
-            print(player)
-            print(f"\nTotal Score: {sum(player.score.values())}")
-            if player.handicap != None:
-                print(f"Adjusted Score: {sum(player.score.values()) - int(player.handicap)}\n")
-    return [course,players]
+    print_summary = __print_summary(players, course)
+    
+    print("\nEnd of tracking...")
+    
+    return [players, course]
 
 b = track_score()
 #for i in b[1]:
