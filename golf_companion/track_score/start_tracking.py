@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 import __course_class
 
+
 def __exit():
     raise SystemExit("\nExiting the program")
     sys.exit()
@@ -65,11 +66,42 @@ def __choose_course():
         return __add_new_course()
     return None
 
+def __add_player():
+    player_name = None
+    while player_name == None or player_name == "" or player_name == " ":
+        player_name = input("\nEnter player name: \n*Note: Cannot be empty\n ")
+    
+    player_skill = None
+    while player_skill == None or player_skill == "" or player_skill == " ":
+        player_skill = input("\nChoose player skill. \nEnter: \n1: Professional \n2: Intermediate \n3: Amateur \n0: Exit")
+        if __check_value_is_number(player_skill) == True:
+            if int(player_skill) not in [0,1,2,3]:
+                player_skill = None
+            elif int(player_skill) == 0:
+                __exit()                
+        else:
+            player_skill = None
+    player = Player
+    
+    
 def track_score(players=None, course=None):
     if course == None:
         course = __choose_course()
     if course == None:
         print("No Course Choosen!")
+    
+    
+    if players = None:
+        num_players = "a"
+        while num_players == False:
+            num_players = input("\nEnter the number of players or enter '0' to exit: ")
+            if __check_value_is_number(num_players) == True:
+                if int(num_players) == 0:
+                    __exit()
+        for i in range(int(num_players)):
+            players.append(__add_player())
+    else:
+        num_players = len(players)
     
     return course
 
