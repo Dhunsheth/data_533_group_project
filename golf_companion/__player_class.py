@@ -37,7 +37,7 @@ class Player:
 
     def __str__(self):
         skill_level = "Professional" if self.skill == 1 else "Intermediate" if self.skill == 2 else "Amateur"
-        output = f"Player: {self.name}\nSkill Level: {skill_level}\nHandicap: {self.handicap if self.handicap is not None else 'N/A'}\n"
+        output = f"\nPlayer: {self.name}\nSkill Level: {skill_level}\nHandicap: {self.handicap if self.handicap is not None else 'N/A'}\n"
         if self.score is not None:
             output += "Score:\n" + str(pd.DataFrame([self.score], index=[self.name]))
         return output
