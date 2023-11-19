@@ -106,7 +106,10 @@ def __track_hole(players, course, hole_num, print_header = True):
         if __check_value_is_number(check) == True:
             if int(check) == 0:
                 __exit()
-        print(f"\nHole {hole_num + 1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards\n")
+        border = "-" * len(f"\nHole {hole_num + 1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards\n")
+        print("\n" + border)
+        print(f"Hole {hole_num + 1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards")
+        print(border + "\n")
     for player in players:
         if player.score == None:
             player.score = {}
@@ -138,22 +141,22 @@ def __print_summary(players, course):
         if players[i].handicap != None:
             adjusted_score[i] = sum(players[i].score.values()) - int(players[i].handicap)
     if int(print_summary) == 1:
-        border = "-" * len(f"Hole {i + 1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards")
+        border = "-" * len(f"{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
         print("\n" + border)
-        print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
-        print(border + "\n")
+        print(f"{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
+        print(border)
         for i in range(len(players)):
             print(players[i])
             print(f"\nTotal Score: {total_score[i]}")
             if players[i].handicap != None:
                 print(f"Adjusted Score: {adjusted_score[i]}")
     else:
-        print(f"\n{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
+        border = "-" * len(f"{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
+        print("\n" + border)
+        print(f"{course.course_name} | Par {course.par} | Course Record: {course.course_record}")
+        print(border)
         for i in range(len(players)):
-            border = "-" * len(f"Hole {i + 1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards")
-            print("\n" + border)
             print(f"\nPlayer: {players[i].name} \nTotal Score: {total_score[i]} | Adjusted Score: {adjusted_score[i]}")
-            print(border + "\n")
     for i in range(len(players)):
         if adjusted_score[i] == None:
             final_score.append(total_score[i])
@@ -176,16 +179,19 @@ def __check_num_holes():
     return num_holes
 
 def __add_game_players(players=[]):
+    if players == []:
+        players = []
     num_players = "a"
     while num_players.isnumeric() == False:
-        num_players = input("\nEnter the number of players or enter '0' to exit: ")
+        num_players = input("\nEnter the number of players to add or enter '0' to exit: ")
         if __check_value_is_number(num_players) == True:
             if int(num_players) == 0:
                 __exit()
+    players_already_in_game = len(players)
     for i in range(int(num_players)):
         border = "-" * len(f"Player {i+1}")
         print("\n" + border)
-        print(f"Player {i+1}")
+        print(f"Player {i + 1 + players_already_in_game}")
         print(border)
         players.append(__add_player())
     return players
@@ -198,8 +204,17 @@ def track_score(players = [], course = None, num_holes = None):
     if players == []:
         players = __add_game_players()
     else:
-        num_players = len(players)
-    
+        ask_to_add_players = None
+        while ask_to_add_players == None:
+            print(f"\nPlayers in game:", end="")
+            for player in players:
+                print(f" {player.name}", end="")
+            ask_to_add_players = input("\nDo you want to add more players: \n1: Yes \n2: No\n")
+            if __check_value_is_number(ask_to_add_players) == True:
+                if int(ask_to_add_players) == 1:
+                    players = __add_game_players(players)
+            else:
+                ask_to_add_players = None
     if num_holes == None:
         num_holes = __check_num_holes()
 

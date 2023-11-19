@@ -5,11 +5,25 @@ from golf_companion.pick_club import start_picking
 from golf_companion.track_score import start_tracking
 from golf_companion import __player_class
 
-def start_game():
-    course = start_tracking.__choose_course()
-    players = start_tracking.__add_game_players()
-    
-    num_holes = start_tracking.__check_num_holes()
+def start_game(players = [], course = None, num_holes = None):
+    if course == None:
+        course = start_tracking.__choose_course()
+    if players == []:
+        players = start_tracking.__add_game_players()
+    else:
+        ask_to_add_players = None
+        while ask_to_add_players == None:
+            print(f"\nPlayers in game:", end="")
+            for player in players:
+                print(f" {player.name}", end="")
+            ask_to_add_players = input("\nDo you want to add more players: \n1: Yes \n2: No\n")
+            if start_tracking.__check_value_is_number(ask_to_add_players) == True:
+                if int(ask_to_add_players) == 1:
+                    players = start_tracking.__add_game_players(players)
+            else:
+                ask_to_add_players = None
+    if num_holes == None:
+        num_holes = start_tracking.__check_num_holes()
     
     for i in range(num_holes):
         border = "-" * len(f"Hole {i + 1} | Par {course.score_card['par'][i]} | {course.score_card['yards'][i]} yards")
@@ -59,6 +73,6 @@ def start_game():
     print(f"\nGame winner is {players[min_score_index].name} who got a final score of {final_scores[min_score_index]}!")
     print("")
     print("End of game...")
-    return [course, players, print_summary]
+    return [players, course, final_scores]
     
 b = start_game()
