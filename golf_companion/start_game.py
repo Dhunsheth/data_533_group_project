@@ -11,6 +11,8 @@ def start_game(players = [], course = None, num_holes = None):
     if players == []:
         players = start_tracking.__add_game_players()
     else:
+        for k in players:
+            k.score = {}
         ask_to_add_players = None
         while ask_to_add_players == None:
             print(f"\nPlayers in game:", end="")
@@ -43,8 +45,8 @@ def start_game(players = [], course = None, num_holes = None):
                     which_player = None
                     while which_player == None:
                         print("Which player needs help picking a club?")
-                        for i in range(len(players)):
-                            print(f"{i+1}: {players[i].name}")
+                        for j in range(len(players)):
+                            print(f"{j+1}: {players[j].name}")
                         which_player = input()
                         check_which_player = start_tracking.__check_value_is_number(which_player)
                         if check_which_player == True:
@@ -70,7 +72,17 @@ def start_game(players = [], course = None, num_holes = None):
     print_summary = start_tracking.__print_summary(players, course)
     final_scores = print_summary
     min_score_index = final_scores.index(min(final_scores))
-    print(f"\nGame winner is {players[min_score_index].name} who got a final score of {final_scores[min_score_index]}!")
+    tie = False
+    for i in range(len(final_scores)):
+        if final_scores[min_score_index] == final_scores[i] and i != min_score_index:
+            tie = True
+    if tie == True:
+        print(f"\nThere was a tie! The following players tied for a final score of {final_scores[min_score_index]}!")
+        indicies = [index for index, item in enumerate(final_scores) if item == final_scores[min_score_index]]
+        for i in indicies:
+            print(f"{players[i].name}")
+    else:
+        print(f"\nGame winner is {players[min_score_index].name} who got a final score of {final_scores[min_score_index]}!")
     print("")
     print("End of game...")
     return [players, course, final_scores]

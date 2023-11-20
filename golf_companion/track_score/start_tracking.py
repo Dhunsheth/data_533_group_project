@@ -106,9 +106,9 @@ def __track_hole(players, course, hole_num, print_header = True):
         if __check_value_is_number(check) == True:
             if int(check) == 0:
                 __exit()
-        border = "-" * len(f"\nHole {hole_num + 1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards\n")
+        border = "-" * len(f"\nHole {hole_num+1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards\n")
         print("\n" + border)
-        print(f"Hole {hole_num + 1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards")
+        print(f"Hole {hole_num+1} | Par {course.score_card['par'][hole_num]} | {course.score_card['yards'][hole_num]} yards")
         print(border + "\n")
     for player in players:
         if player.score == None:
@@ -119,7 +119,7 @@ def __track_hole(players, course, hole_num, print_header = True):
             if __check_value_is_number(player_score) == False:
                 player_score = None
             else:
-                player.score.update({(hole_num+1):int(player_score)})
+                player.score.update({hole_num+1: int(player_score)})
     return players
 
 def __print_summary(players, course):
