@@ -56,8 +56,11 @@ def start_game(players = [], course = None, num_holes = None):
                                     yardage = input("\nEnter yardage to the flag: ")
                                     check_yardage = start_tracking.__check_value_is_number(yardage)
                                     if check_yardage == True:
-                                        club = start_picking.start_picking(int(yardage),players[int(which_player)-1])
-                                        print(f"{players[int(which_player)-1].name} hit your {club}\n")
+                                        if int(yardage) > 750:
+                                            yardage = None
+                                        else:
+                                            club = start_picking.start_picking(int(yardage),players[int(which_player)-1])
+                                            print(f"{players[int(which_player)-1].name} hit your {club}\n")
                                     else:
                                         which_player = None
                             else:
