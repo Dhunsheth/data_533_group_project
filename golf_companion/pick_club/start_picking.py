@@ -1,4 +1,4 @@
-import __player_class 
+from golf_companion import __player_class
 
 def start_picking(target_yards, player):
     if not isinstance(target_yards, (int, float)) or target_yards < 0:
