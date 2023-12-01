@@ -291,7 +291,7 @@ def __add_game_players(players=[]):
         players.append(__add_player())
     return players
 
-def track_score(players = [], course = None, num_holes = None):
+def start_tracking(players = [], course = None, num_holes = None):
     """
     Track scores for a golf game.
 
