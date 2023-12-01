@@ -23,20 +23,19 @@ Our module structure does not follow the requirements in that each sub-package d
 
 
 golf_companion/  
-│  
 ├── __init__.py  
 ├── __player_class.py  
 ├── __course_class.py  
 ├── start_game.py  
-│  
+│   
 ├── pick_club/  
 │   ├── __init__.py  
 │   └── start_picking.py  
-│  
+│   
 ├── track_score/  
 │   ├── __init__.py  
 │   └── start_tracking.py  
-│  
+│   
 └── course_files/  
     ├── sunset_ranch.csv    
     ├── shadow_ridge.csv   
