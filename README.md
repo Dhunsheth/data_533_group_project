@@ -28,7 +28,7 @@ golf_companion/
     ├── shadow_ridge.csv   
     └── okanagan_golf_club_bear.csv   
 
-**start_game.py**  
+<u>**start_game.py**</u>  
 This module contains the main "start_game(players = [], course = None, num_holes = None)" function. If a list of player objects, course object, or number of holes to play isn't passed, the function will prompt the user to enter this information. If a list of players is passed, there is an option to add additional players to the game so it isn't like you either have to initialize or pass all game players but can do a mix as well. Once all holes have been looped through, the function will ask if the user would like to see a detailed breakdown or not - if yes then it will show the score for each player for each hole - if not then it will show the final/adjusted scores of all players and also specify which players won or tied. 
 
 Assuming all player, course and hole information has been loaded, the function will loop through each hole, and for each hole it will:
