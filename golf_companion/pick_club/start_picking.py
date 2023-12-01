@@ -18,6 +18,4 @@ def start_picking(target_yards, player):
 
     return best_club
 
-p = __player_class .Player("Tim",2)
-best_club= start_picking(200,p)
-print(best_club)
+
