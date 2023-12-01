@@ -1,10 +1,10 @@
 import unittest
 from start_picking import start_picking
-from golf_companion import __player_class
+from golf_companion.__player_class import Player 
 
 class TestStartPickingLowYardage(unittest.TestCase):
     def setUp(self):
-        self.player = __player_class.Player(name="Test Player", skill=1)  # Assuming skill level 1 has all clubs
+        self.player = Player(name="Test Player", skill=1)  # Assuming skill level 1 has all clubs
 
     def test_putter_selected(self):
         self.assertEqual(start_picking(15, self.player), "Putter")
@@ -23,7 +23,7 @@ class TestStartPickingLowYardage(unittest.TestCase):
 
 class TestStartPickingHighYardage(unittest.TestCase):
     def setUp(self):
-        self.player = __player_class.Player(name="Test Player", skill=1)  # Assuming skill level 1 has all clubs
+        self.player = Player(name="Test Player", skill=1)  # Assuming skill level 1 has all clubs
 
     def test_driver_selected(self):
         self.assertEqual(start_picking(305, self.player), "Driver")
