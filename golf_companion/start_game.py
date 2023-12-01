@@ -42,6 +42,10 @@ def start_game(players = [], course = None, num_holes = None):
             if start_tracking.__check_value_is_number(ask_to_add_players) == True:
                 if int(ask_to_add_players) == 1:
                     players = start_tracking.__add_game_players(players)
+                elif int(ask_to_add_players) == 2:
+                    ask_to_add_players = False
+                else:
+                    ask_to_add_players = None
             else:
                 ask_to_add_players = None
     if num_holes == None:
@@ -79,8 +83,8 @@ def start_game(players = [], course = None, num_holes = None):
                                     yardage = input("\nEnter yardage to the flag: ")
                                     check_yardage = start_tracking.__check_value_is_number(yardage)
                                     if check_yardage == True:
-                                        if int(yardage) > 750: # typical golf hole are not longer than 750 yards.
-                                            print("Yardage should not be longer than 750 yards.")
+                                        if int(yardage) > 750 or int(yardage) < 0: # typical golf hole are not longer than 750 yards.
+                                            print("Yardage should be greater than 0 and less than 750 yards.")
                                             yardage = None
                                         else:
                                             club = start_picking.start_picking(int(yardage),players[int(which_player)-1])

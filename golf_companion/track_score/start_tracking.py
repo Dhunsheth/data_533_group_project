@@ -125,10 +125,12 @@ def __add_player():
     
     player_handicap = None
     while player_handicap == None:
-        player_handicap = input("\nEnter player handicap or press Enter to skip \n*Note: Handicap must be a number \n")
+        player_handicap = input("\nEnter player handicap (-10 < H < 30) or press Enter to skip \n*Note: Handicap must be a number \n")
         if player_handicap != "" and player_handicap != " " and player_handicap.isnumeric() == False:
             player_handicap = None
-    
+        if __check_value_is_number(player_handicap) == True:
+            if int(player_handicap) < -10 or int(player_handicap) > 30:
+                player_handicap = None
     check_handicap = __check_value_is_number(player_handicap)
     if check_handicap == False:
         player_handicap = None
@@ -255,8 +257,8 @@ def __check_num_holes():
             if int(num_holes) == 0:
                 __exit()
             else:
-                if int(num_holes) > 72:
-                    print("Cannot track more than 4 full games of golf at 1 time.")
+                if int(num_holes) > 72 or int(num_holes) < 0:
+                    print("Must track atleast 1 hole and cannot track more than 4 full games (72 holes) of golf at 1 time.")
                     num_holes = None
                 else:
                     num_holes = int(num_holes)
@@ -282,10 +284,12 @@ def __add_game_players(players=[]):
         players = []
     num_players = "a"
     while num_players.isnumeric() == False:
-        num_players = input("\nEnter the number of players to add or enter '0' to exit: ")
+        num_players = input("\nEnter the number of players to add (max 6) or enter '0' to exit: ")
         if __check_value_is_number(num_players) == True:
             if int(num_players) == 0:
                 __exit()
+            elif int(num_players) > 6 or int(num_players) < 0:
+                num_players = "a"
     players_already_in_game = len(players)
     for i in range(int(num_players)):
         border = "-" * len(f"Player {i+1}")
@@ -329,6 +333,10 @@ def start_tracking(players = [], course = None, num_holes = None):
             if __check_value_is_number(ask_to_add_players) == True:
                 if int(ask_to_add_players) == 1:
                     players = __add_game_players(players)
+                elif int(ask_to_add_players) == 2:
+                    ask_to_add_players = False
+                else:
+                    ask_to_add_players = None
             else:
                 ask_to_add_players = None
     if num_holes == None:
