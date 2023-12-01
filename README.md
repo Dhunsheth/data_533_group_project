@@ -3,11 +3,7 @@ Group Project for Data-533 - Building a golf companion python package / applicat
 
 **Important notes for Prof/TA**
 1. *Our module structure does not follow the requirements in that each sub-package does not have 2 sub-modules because this was not necessary for our project (Khalad approved this).*
-<<<<<<< HEAD
-2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included (Khalad approved this).*
-=======
 2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included. So we only have 3 out of the 4 test classes (Khalad approved this).*
->>>>>>> main
 3. *The testing files can be found on the "test" branch while the main code is on the main branch {testing files: "course_test.py", "player_test.py", "pick_test.py"}.*
 
 **Introduction**
@@ -37,20 +33,12 @@ golf_companion/
 
 **start_game.py**  
 -----------------  
-<<<<<<< HEAD
-*Function:* start_game()  
-*Parameters:*   
-1. players (optional): list of player objects  
-2. course (optional): a course object
-3. num_holes (optional): the number of holes to be played - int
-=======
 *Function Name:* start_game()  
 *Parameters:*   
 1. players (optional): list of player objects  
 2. course (optional): a course object
 3. num_holes (optional): the number of holes to be played - int   
 
->>>>>>> main
 *Returns:* a list containing the player objects, the course object, and a list of final scores for each player  
   
 This module contains the main "start_game" function. If a list of player objects, course object, or number of holes to play isn't passed, the function will prompt the user to enter this information. If a list of players is passed, there is an option to add additional players to the game so it isn't like you either have to initialize or pass all game players but can do a mix as well. Once all holes have been looped through, the function will ask if the user would like to see a detailed breakdown or not - if yes then it will show the score for each player for each hole - if not then it will show the final/adjusted scores of all players and also specify which players won or tied. 
@@ -62,18 +50,11 @@ Assuming all player, course and hole information has been loaded, the function w
 
 **start_picking.py**  
 -----------------  
-<<<<<<< HEAD
-*Function:* start_picking()  
-*Parameters:*   
-1. target_yards (mandatory): target yardage  
-2. player (mandatory): a single player object
-=======
 *Function Name:* start_picking()  
 *Parameters:*   
 1. target_yards (mandatory): target yardage  
 2. player (mandatory): a single player object   
 
->>>>>>> main
 *Returns:* the club to use  
   
 This module is used to pick a club using the "start_picking(target_yards, player)" function. It takes the target yardage you want to hit (typically the distance to the flag), and a player object to determine 
@@ -81,19 +62,12 @@ the best club to use based on the player's skill. This function is used by the s
 
 **start_tracking.py**  
 -----------------   
-<<<<<<< HEAD
-*Function:* start_tracking()  
-=======
 *Function Name:* start_tracking()  
->>>>>>> main
 *Parameters:*   
 1. players (optional): list of player objects  
 2. course (optional): a course object
 3. num_holes (optional): the number of holes to be played - int
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 *Returns:* a list containing the player objects and the course object  
     
 This module uses the "start_tracking(players = [], course = None, num_holes = None)" function to track the score of 1 or more players. Similar to the start_game() function, if the player or course objects aren't passed, the function will prompt the user for it. Once the player and course objects have been established, the function will loop through each hole and prompt the user to enter the final score for each player for each hole. Once all holes have been looped through, the user will have the option to either see a detailed breakdown of score by player by hole, or the total scores of all players. 
@@ -103,8 +77,3 @@ There are several helper functions in this module that are also used by the star
 **User Input Validation**
 -----------------   
 Due to the nature of the application being a game, it heavily relies on user input, as such, the user input is checked in several instances to make sure inputs make sense. To list a few, there is making sure a valid number is entered, or for player names - only alphabets are entered, or for entering yardages the user cannot enter more than 750 yards because a hole longer than 750 doesn't make sense, and finally cannot enter more than 72 holes to play because anymore doesn't make sense. This will help users detect when an inaccurate value is entered and ensure a proper flow throughout the application.
-<<<<<<< HEAD
-
-
-=======
->>>>>>> main
