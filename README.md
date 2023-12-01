@@ -9,6 +9,7 @@ Group Project for Data-533 - Building a golf companion python package / applicat
 **Introduction**
 ----------------
 The golf_companion package has 2 sub-packages (track_score and pick_club) with the following modules (start_tracking.py and start_picking.py), respectively. In addition, there is another module under golf_companion called "start_game.py" that uses the 2 sub-packages to simulate a round of golf. Some modules contain class definitions and a course_files folder that stores the default courses available to play. 
+  
 *Note: there are several times when the user can choose to "Exit the program" - choosing this option will immediately end the program without storing or displaying anything further - this is similar to a forced exit*
 
 golf_companion/  
