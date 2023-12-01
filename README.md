@@ -28,7 +28,7 @@ golf_companion/
     ├── shadow_ridge.csv   
     └── okanagan_golf_club_bear.csv   
 
-**start_game.py**
+**start_game.py**  
 This module contains the main "start_game(players = [], course = None, num_holes = None)" function. If a list of player objects, course object, or number of holes to play isn't passed, the function will prompt the user to enter this information. If a list of players is passed, there is an option to add additional players to the game so it isn't like you either have to initialize or pass all game players but can do a mix as well. Once all holes have been looped through, the function will ask if the user would like to see a detailed breakdown or not - if yes then it will show the score for each player for each hole - if not then it will show the final/adjusted scores of all players and also specify which players won or tied. 
 
 Assuming all player, course and hole information has been loaded, the function will loop through each hole, and for each hole it will:
@@ -36,11 +36,11 @@ Assuming all player, course and hole information has been loaded, the function w
 2. Once the entire hole has been played, the function will prompt the user to enter the final score of all players.
 3. This is then repeated for the remaining holes.
 
-**start_picking.py**
+**start_picking.py**  
 This module is used to pick a club using the "start_picking(target_yards, player)" function. It takes the target yardage you want to hit (typically the distance to the flag), and a player object to determine 
 the best club to use based on the player's skill. This function is used by the start_game() function, but can also be called independently, as long as a player object has been defined. 
 
-**start_tracking.py**
+**start_tracking.py**  
 This module uses the "start_tracking(players = [], course = None, num_holes = None)" function to track the score of 1 or more players. Similar to the start_game() function, if the player or course objects aren't passed, the function will prompt the user for it. Once the player and course objects have been established, the function will loop through each hole and prompt the user to enter the final score for each player for each hole. Once all holes have been looped through, the user will have the option to either see a detailed breakdown of score by player by hole, or the total scores of all players. 
 
 There are several helper functions in this module that are also used by the start_game() function, such as "__check_value_is_number(value)", "__exit()", "__add_new_course()", "__choose_course()", "__add_player()", "__track_hole(players, course, hole_num, print_header = True)", "__print_summary(players, course)", "__check_num_holes()", and others. 
