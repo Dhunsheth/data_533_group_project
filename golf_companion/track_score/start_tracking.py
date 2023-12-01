@@ -255,7 +255,11 @@ def __check_num_holes():
             if int(num_holes) == 0:
                 __exit()
             else:
-                num_holes = int(num_holes)
+                if int(num_holes) > 72:
+                    print("Cannot track more than 4 full games of golf at 1 time.")
+                    num_holes = None
+                else:
+                    num_holes = int(num_holes)
         else:
             num_holes = None
     return num_holes
