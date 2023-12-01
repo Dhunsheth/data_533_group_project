@@ -3,6 +3,18 @@ import os
 
 class Course:
     def __init__(self, course_name, file_path, course_record=None):
+        """
+        Initialize a Course object.
+
+        Parameters
+        ----------
+        course_name : str
+            The name of the golf course.
+        file_path : str
+            The file path to the course score card CSV file.
+        course_record : int or None, optional
+            The course record, if available. Default is None.
+        """
         self.course_name = course_name
         try:
             score_card = pd.read_csv(file_path)
@@ -17,6 +29,23 @@ class Course:
         self.par = int(par)
         
     def add_course(course_name, file_path, course_record=None):
+        """
+        Create a new golf course object.
+
+        Parameters
+        ----------
+        course_name : str
+            The name of the golf course.
+        file_path : str
+            The file path to the course score card CSV file.
+        course_record : int or None, optional
+            The course record, if available. Default is None.
+
+        Returns
+        -------
+        Course or str
+            A Course object if successful, otherwise an error message as a string.
+        """
         try:
             pd.read_csv(file_path)
         except:
@@ -24,6 +53,9 @@ class Course:
         return Course(course_name, file_path, course_record)
     
     def __str__(self):
+        """
+        Return a string representation of the Course object.
+        """
         pd.set_option('display.max_rows', None)
         pd.set_option('display.max_columns', None)
         return f"\nCourse: {self.course_name} \nCourse Record: {self.course_record}\nPar: {self.par} \nScore Card:\n{self.score_card.T}\n"

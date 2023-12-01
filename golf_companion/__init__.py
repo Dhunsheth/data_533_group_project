@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 23 20:39:59 2023
-
-@author: Dhuns
-"""
-
+from golf_companion import start_game
+from golf_companion.track_score.start_tracking import track_score
+from golf_companion.pick_club.start_picking import start_picking

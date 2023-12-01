@@ -6,10 +6,24 @@ from golf_companion import __course_class
 from golf_companion import __player_class
 
 def __exit():
+    """Raise SystemExit to exit the program."""
     raise SystemExit("\nExiting the program")
     sys.exit()
 
 def __check_value_is_number(value):
+    """
+    Check if the input from user is a valid number.
+
+    Parameters
+    ----------
+    value : str
+        The input value to check.
+
+    Returns
+    -------
+    bool
+        True if the value is a number, False otherwise.
+    """   
     try:
         int(value)
     except:
@@ -17,6 +31,15 @@ def __check_value_is_number(value):
     return True
 
 def __add_new_course():
+    """
+    Add a new golf course. Prompts the user for file location of the csv storing the 
+    score card of the new course.
+
+    Returns
+    -------
+    __course_class.Course
+        A new course object.
+    """
     file_path = None
     while file_path == None:
         file_path = input("\nEnter file path to course score card: \n\n*Note: File must be csv and have the column headings 'hole' | 'yards' | 'par' - in that order.\n\nPress 5 if you want to exit. \n")
@@ -45,6 +68,14 @@ def __add_new_course():
     return new_course
 
 def __choose_course():
+    """
+    Choose a golf course - can also add a new course.
+
+    Returns
+    -------
+    __course_class.Course or None
+        The chosen course object or None if the user exits.
+    """
     course = None
     while course == None:
         course = input("\nWhat course would you like to play? \nPress: \n1: Sunset Ranch \n2: Shadow Ridge \n3: Okanagan Golf Club Bear \n4: Load Your own course\n5: Exit \n")
@@ -69,6 +100,14 @@ def __choose_course():
     return None
 
 def __add_player():
+    """
+    Add a new player, prompts for player name, skill and handicap.
+
+    Returns
+    -------
+    __player_class.Player
+        A new player object.
+    """
     player_name = None
     while player_name == None or player_name == "" or player_name == " " or (player_name.replace(" ", "")).isalpha() == False:
         player_name = input("\nEnter player name: \n*Note: Cannot be empty and only alphabets allowed. \n")
@@ -101,6 +140,25 @@ def __add_player():
     return player
 
 def __track_hole(players, course, hole_num, print_header = True):
+    """
+    Track score for all players for n number of holes (hole_num).
+
+    Parameters
+    ----------
+    players : list of __player_class.Player
+        List of players.
+    course : __course_class.Course
+        Golf course object.
+    hole_num : int
+        Current hole number.
+    print_header : bool, optional
+        Whether to print the hole header. Default is True.
+
+    Returns
+    -------
+    list of __player_class.Player
+        Updated list of players.
+    """
     if print_header == True:
         check = input("\nEnter 0 to exit, anything else will continue: ")
         if __check_value_is_number(check) == True:
@@ -123,6 +181,22 @@ def __track_hole(players, course, hole_num, print_header = True):
     return players
 
 def __print_summary(players, course):
+    """
+    Print a summary of scores for the round. Can either print a detailed summary of scores by hole
+    or print a condensed version.
+
+    Parameters
+    ----------
+    players : list of __player_class.Player
+        List of players.
+    course : __course_class.Course
+        Golf course object.
+
+    Returns
+    -------
+    list
+        List of final scores.
+    """
     print_summary = None
     final_score = []
     total_score = []
@@ -165,6 +239,14 @@ def __print_summary(players, course):
     return final_score
 
 def __check_num_holes():
+    """
+    Check the number of holes to track.
+
+    Returns
+    -------
+    int
+        Number of holes.
+    """
     num_holes = None
     while num_holes == None:
         num_holes = input("\nHow many holes are you going to track. Enter '0' to exit: ")
@@ -179,6 +261,19 @@ def __check_num_holes():
     return num_holes
 
 def __add_game_players(players=[]):
+    """
+    Add players to the game.
+
+    Parameters
+    ----------
+    players : list of __player_class.Player, optional
+        List of players. Default is an empty list.
+
+    Returns
+    -------
+    list of __player_class.Player
+        Updated list of players.
+    """
     if players == []:
         players = []
     num_players = "a"
@@ -197,6 +292,23 @@ def __add_game_players(players=[]):
     return players
 
 def track_score(players = [], course = None, num_holes = None):
+    """
+    Track scores for a golf game.
+
+    Parameters
+    ----------
+    players : list of __player_class.Player, optional
+        List of players. Default is an empty list.
+    course : __course_class.Course or None, optional
+        Golf course object. Default is None.
+    num_holes : int or None, optional
+        Number of holes to track. Default is None.
+
+    Returns
+    -------
+    list
+        List containing players and the course.
+    """
     if course == None:
         course = __choose_course()
     if course == None:
@@ -227,6 +339,3 @@ def track_score(players = [], course = None, num_holes = None):
     
     return [players, course]
 
-#b = track_score()
-#for i in b[1]:
-#    print(i)
