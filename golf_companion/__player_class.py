@@ -41,3 +41,4 @@ class Player:
         if self.score is not None:
             output += "Score:\n" + str(pd.DataFrame([self.score], index=[self.name]))
         return output
+
