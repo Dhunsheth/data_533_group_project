@@ -13,8 +13,8 @@ class Player:
     "8 Iron": 150,
     "9 Iron": 135,
     "Pitching Wedge": 120,
-    "Sand Wedge": 110,
-    "Putter": 30
+    "Sand Wedge": 21,
+    "Putter": 20
     }
 
     def __init__(self, name, skill, handicap=None,score=None):
