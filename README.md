@@ -3,7 +3,7 @@ Group Project for Data-533 - Building a golf companion python package / applicat
 
 **Important notes for Prof/TA**
 1. *Our module structure does not follow the requirements in that each sub-package does not have 2 sub-modules because this was not necessary for our project (Khalad approved this).*
-2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included (Khalad approved this).*
+2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included. So we only have 3 out of the 4 test classes (Khalad approved this).*
 3. *The testing files can be found on the "test" branch while the main code is on the main branch {testing files: "course_test.py", "player_test.py", "pick_test.py"}.*
 
 **Introduction**
