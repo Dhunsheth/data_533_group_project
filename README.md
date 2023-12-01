@@ -66,7 +66,8 @@ the best club to use based on the player's skill. This function is used by the s
 *Parameters:*   
 1. players (optional): list of player objects  
 2. course (optional): a course object
-3. num_holes (optional): the number of holes to be played - int    
+3. num_holes (optional): the number of holes to be played - int
+
 *Returns:* a list containing the player objects and the course object  
     
 This module uses the "start_tracking(players = [], course = None, num_holes = None)" function to track the score of 1 or more players. Similar to the start_game() function, if the player or course objects aren't passed, the function will prompt the user for it. Once the player and course objects have been established, the function will loop through each hole and prompt the user to enter the final score for each player for each hole. Once all holes have been looped through, the user will have the option to either see a detailed breakdown of score by player by hole, or the total scores of all players. 
