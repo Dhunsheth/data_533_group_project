@@ -1,5 +1,5 @@
-from __course_class import Course # delte this 
-# from golf_companion import __course_class
+#from __course_class import Course # delte this 
+from golf_companion.__course_class import Course 
 import unittest
 import os
 import pandas as pd

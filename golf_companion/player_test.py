@@ -1,6 +1,6 @@
 import unittest
-## from golf_companion import _player_class
-from __player_class import Player # delete this
+from golf_companion.__player_class import Player
+# from __player_class import Player # delete this
 
 class TestPlayerProfessional(unittest.TestCase):
     @classmethod
