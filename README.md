@@ -13,17 +13,17 @@ The golf_companion package has 2 sub-packages (track_score and pick_club) with t
 *Note: there are several times when the user can choose to "Exit the program" - choosing this option will immediately end the program without storing or displaying anything further - this is similar to a forced exit*
 
 golf_companion/  
-├── \__init__.py  
-├── __player_class.py  
-├── __course_class.py  
+├── \_\_init__.py  
+├── \_\_player_class.py  
+├── \_\_course_class.py  
 ├── start_game.py  
 │   
 ├── pick_club/  
-│   ├── \__init__.py  
+│   ├── \_\_init__.py  
 │   └── start_picking.py  
 │   
 ├── track_score/  
-│   ├── \__init__.py  
+│   ├── \_\_init__.py  
 │   └── start_tracking.py  
 │   
 └── course_files/  
