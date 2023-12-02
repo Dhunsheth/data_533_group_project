@@ -33,7 +33,7 @@ golf_companion/
 
 **start_game.py**  
 -----------------  
-*Function Name:* start_game()  
+*Function Name:* start_game(players = [], course = None, num_holes = None)  
 *Parameters:*   
 1. players (optional): list of player objects  
 2. course (optional): a course object
@@ -50,7 +50,7 @@ Assuming all player, course and hole information has been loaded, the function w
 
 **start_picking.py**  
 -----------------  
-*Function Name:* start_picking()  
+*Function Name:* start_picking(target_yards, player)  
 *Parameters:*   
 1. target_yards (mandatory): target yardage  
 2. player (mandatory): a single player object   
@@ -62,7 +62,7 @@ the best club to use based on the player's skill. This function is used by the s
 
 **start_tracking.py**  
 -----------------   
-*Function Name:* start_tracking()  
+*Function Name:* start_tracking(players = [], course = None, num_holes = None)  
 *Parameters:*   
 1. players (optional): list of player objects  
 2. course (optional): a course object
