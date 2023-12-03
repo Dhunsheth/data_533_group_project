@@ -60,7 +60,7 @@ class Course:
         pd.set_option('display.max_columns', None)
         return f"\nCourse: {self.course_name} \nCourse Record: {self.course_record}\nPar: {self.par} \nScore Card:\n{self.score_card.T}\n"
 
-script_dir = os.path.dirname(os.path.abspath(__file__)) + "\\course_files"
+script_dir = os.path.dirname(os.path.abspath(__file__)) + "/course_files"
 
 sunset_ranch_course_record = 65
 csv_file_path = os.path.join(script_dir, "sunset_ranch.csv")
