@@ -2,13 +2,18 @@
 Group Project for Data-533 - Building a golf companion python package / application
 
 **Important notes for Prof/TA**
+<<<<<<< HEAD
 1. *Our module structure does not follow the requirements in that each sub-package does not have 2 sub-modules because this was not necessary for our project (Khalad approved this).*
 <<<<<<< HEAD
 2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included (Khalad approved this).*
 =======
+=======
+1. *Our module structure does not follow the requirements in that each sub-package does not have 2 sub-modules because this was not necessary for our project. In addition, we did not use inheritance because it did not make sense in our framework for the application to work. (Khalad has approved this)*
+>>>>>>> main
 2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included. So we only have 3 out of the 4 test classes (Khalad approved this).*
 >>>>>>> main
 3. *The testing files can be found on the "test" branch while the main code is on the main branch {testing files: "course_test.py", "player_test.py", "pick_test.py"}.*
+4. *Can check repo insights for a history of commits made during the project. Some commits contain small changes but frequent commits, thereby increasing the number of total commits whereas others may be lower in total number but add large amounts of code.*
 
 **Introduction**
 ----------------
@@ -17,17 +22,17 @@ The golf_companion package has 2 sub-packages (track_score and pick_club) with t
 *Note: there are several times when the user can choose to "Exit the program" - choosing this option will immediately end the program without storing or displaying anything further - this is similar to a forced exit*
 
 golf_companion/  
-├── __init__.py  
-├── __player_class.py  
-├── __course_class.py  
+├── \_\_init__.py  
+├── \_\_player_class.py  
+├── \_\_course_class.py  
 ├── start_game.py  
 │   
 ├── pick_club/  
-│   ├── __init__.py  
+│   ├── \_\_init__.py  
 │   └── start_picking.py  
 │   
 ├── track_score/  
-│   ├── __init__.py  
+│   ├── \_\_init__.py  
 │   └── start_tracking.py  
 │   
 └── course_files/  
@@ -38,6 +43,7 @@ golf_companion/
 **start_game.py**  
 -----------------  
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Function:* start_game()  
 *Parameters:*   
 1. players (optional): list of player objects  
@@ -45,6 +51,9 @@ golf_companion/
 3. num_holes (optional): the number of holes to be played - int
 =======
 *Function Name:* start_game()  
+=======
+*Function Name:* start_game(players = [], course = None, num_holes = None)  
+>>>>>>> main
 *Parameters:*   
 1. players (optional): list of player objects  
 2. course (optional): a course object
@@ -63,12 +72,16 @@ Assuming all player, course and hole information has been loaded, the function w
 **start_picking.py**  
 -----------------  
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Function:* start_picking()  
 *Parameters:*   
 1. target_yards (mandatory): target yardage  
 2. player (mandatory): a single player object
 =======
 *Function Name:* start_picking()  
+=======
+*Function Name:* start_picking(target_yards, player)  
+>>>>>>> main
 *Parameters:*   
 1. target_yards (mandatory): target yardage  
 2. player (mandatory): a single player object   
@@ -82,9 +95,13 @@ the best club to use based on the player's skill. This function is used by the s
 **start_tracking.py**  
 -----------------   
 <<<<<<< HEAD
+<<<<<<< HEAD
 *Function:* start_tracking()  
 =======
 *Function Name:* start_tracking()  
+>>>>>>> main
+=======
+*Function Name:* start_tracking(players = [], course = None, num_holes = None)  
 >>>>>>> main
 *Parameters:*   
 1. players (optional): list of player objects  
