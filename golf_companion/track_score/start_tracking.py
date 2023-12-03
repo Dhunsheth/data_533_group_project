@@ -101,45 +101,60 @@ def __choose_course():
 
 def __add_player():
     """
-    Add a new player, prompts for player name, skill and handicap.
+    Add a new player, prompts for player name, skill, and handicap.
 
     Returns
     -------
     __player_class.Player
         A new player object.
     """
-    player_name = None
-    while player_name == None or player_name == "" or player_name == " " or (player_name.replace(" ", "")).isalpha() == False:
-        player_name = input("\nEnter player name: \n*Note: Cannot be empty and only alphabets allowed. \n")
-    
-    player_skill = None
-    while player_skill == None or player_skill == "" or player_skill == " ":
-        player_skill = input("\nChoose player skill. \nEnter: \n1: Professional \n2: Intermediate \n3: Amateur \n0: Exit \n")
-        if __check_value_is_number(player_skill) == True:
-            if int(player_skill) not in [0,1,2,3]:
-                player_skill = None
-            elif int(player_skill) == 0:
-                __exit()                
-        else:
-            player_skill = None
-    
-    player_handicap = None
-    while player_handicap == None:
-        player_handicap = input("\nEnter player handicap (-10 < H < 30) or press Enter to skip \n*Note: Handicap must be a number \n")
-        if player_handicap != "" and player_handicap != " " and player_handicap.isnumeric() == False:
-            player_handicap = None
-        if __check_value_is_number(player_handicap) == True:
-            if int(player_handicap) < -10 or int(player_handicap) > 30:
-                player_handicap = None
-    check_handicap = __check_value_is_number(player_handicap)
-    if check_handicap == False:
+    try:
+        player_name = None
+        while player_name is None or player_name == "" or player_name == " " or not player_name.replace(" ", "").isalpha():
+            try:
+                player_name = input("\nEnter player name: \n*Note: Cannot be empty and only alphabets allowed. \n")
+            except Exception as e:
+                print(f"Error getting player name: {e}")
+
+        player_skill = None
+        while player_skill is None or player_skill == "" or player_skill == " ":
+            try:
+                player_skill = input("\nChoose player skill. \nEnter: \n1: Professional \n2: Intermediate \n3: Amateur \n0: Exit \n")
+                if __check_value_is_number(player_skill):
+                    if int(player_skill) not in [0, 1, 2, 3]:
+                        player_skill = None
+                    elif int(player_skill) == 0:
+                        __exit()
+                else:
+                    player_skill = None
+            except Exception as e:
+                print(f"Error getting player skill: {e}")
+
         player_handicap = None
-    else:
-        player_handicap = int(player_handicap)
-        
-    player = __player_class.Player(player_name, int(player_skill), player_handicap)
-    
-    return player
+        while player_handicap is None:
+            try:
+                player_handicap = input("\nEnter player handicap (-10 < H < 30) or press Enter to skip \n*Note: Handicap must be a number \n")
+                if player_handicap != "" and player_handicap != " " and not player_handicap.isnumeric():
+                    player_handicap = None
+                if __check_value_is_number(player_handicap):
+                    if int(player_handicap) < -10 or int(player_handicap) > 30:
+                        player_handicap = None
+            except Exception as e:
+                print(f"Error getting player handicap: {e}")
+
+        check_handicap = __check_value_is_number(player_handicap)
+        if not check_handicap:
+            player_handicap = None
+        else:
+            player_handicap = int(player_handicap)
+
+        player = __player_class.Player(player_name, int(player_skill), player_handicap)
+        return player
+
+    except Exception as e:
+        print(f"Error adding player: {e}")
+        return None
+
 
 def __track_hole(players, course, hole_num, print_header = True):
     """
@@ -299,7 +314,7 @@ def __add_game_players(players=[]):
         players.append(__add_player())
     return players
 
-def start_tracking(players = [], course = None, num_holes = None):
+def start_tracking(players=None, course=None, num_holes=None):
     """
     Track scores for a golf game.
 
@@ -317,37 +332,47 @@ def start_tracking(players = [], course = None, num_holes = None):
     list
         List containing players and the course.
     """
-    if course == None:
-        course = __choose_course()
-    if course == None:
-        print("No Course Choosen!")
-    if players == []:
-        players = __add_game_players()
-    else:
-        ask_to_add_players = None
-        while ask_to_add_players == None:
-            print(f"\nPlayers in game:", end="")
-            for player in players:
-                print(f" {player.name}", end="")
-            ask_to_add_players = input("\nDo you want to add more players: \n1: Yes \n2: No\n")
-            if __check_value_is_number(ask_to_add_players) == True:
-                if int(ask_to_add_players) == 1:
-                    players = __add_game_players(players)
-                elif int(ask_to_add_players) == 2:
-                    ask_to_add_players = False
-                else:
-                    ask_to_add_players = None
-            else:
-                ask_to_add_players = None
-    if num_holes == None:
-        num_holes = __check_num_holes()
+    try:
+        if course is None:
+            course = __choose_course()
+        if course is None:
+            print("No Course Chosen!")
+        if players is None:
+            players = __add_game_players()
+        else:
+            ask_to_add_players = None
+            while ask_to_add_players is None:
+                try:
+                    print(f"\nPlayers in the game:", end="")
+                    for player in players:
+                        print(f" {player.name}", end="")
+                    ask_to_add_players = input("\nDo you want to add more players: \n1: Yes \n2: No\n")
+                    if __check_value_is_number(ask_to_add_players):
+                        if int(ask_to_add_players) == 1:
+                            players = __add_game_players(players)
+                        elif int(ask_to_add_players) == 2:
+                            ask_to_add_players = False
+                        else:
+                            ask_to_add_players = None
+                    else:
+                        ask_to_add_players = None
+                except Exception as e:
+                    print(f"Error processing player input: {e}")
 
-    for i in range(num_holes):
-        players = __track_hole(players, course, i)
-    
-    print_summary = __print_summary(players, course)
-    
-    print("\nEnd of tracking...")
-    
-    return [players, course]
+        if num_holes is None:
+            num_holes = __check_num_holes()
+
+        for i in range(num_holes):
+            players = __track_hole(players, course, i)
+
+        print_summary = __print_summary(players, course)
+
+        print("\nEnd of tracking...")
+
+        return [players, course]
+
+    except Exception as e:
+        print(f"Error in start_tracking: {e}")
+        return None
+
 
