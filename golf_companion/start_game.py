@@ -35,7 +35,7 @@ def start_game(players = [], course = None, num_holes = None):
             k.score = {}
         ask_to_add_players = None
         while ask_to_add_players == None:
-            print(f"\nPlayers in game:", end="")
+            #print(f"\nPlayers in game:", end="")
             for player in players:
                 print(f" {player.name}", end="")
             ask_to_add_players = input("\nDo you want to add more players: \n1: Yes \n2: No\n")
