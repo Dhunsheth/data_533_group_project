@@ -1,5 +1,5 @@
 import unittest
-from start_picking import start_picking
+from golf_companion.pick_club.start_picking import start_picking
 from golf_companion.__player_class import Player 
 
 class TestStartPickingLowYardage(unittest.TestCase):
