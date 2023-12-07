@@ -13,7 +13,7 @@ import os
 # folder_path = os.path.join(current_directory, folder_name)
 # sys.path.append(folder_path)
 
-import golf_companion
+from golf_companion import start_game
 from golf_companion import track_score
 from golf_companion import pick_club
 
@@ -43,7 +43,7 @@ objects, course is the course object, and final_scores is a list of the final
 scores of the players - this only captures their final score (if no handicap)
 or the adjusted final score is the player had a handicap specified. 
 """
-golf_game = golf_companion.start_game.start_game()
+golf_game = start_game.start_game()
 ## To run after the first instance of start_game() is run and you want to skip player/course selection.
 # golf_game = golf_companion.start_game.start_game(golf_game[0], golf_game[1])
 
