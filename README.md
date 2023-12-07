@@ -1,6 +1,8 @@
 # data_533_group_project
 Group Project for Data-533 - Building a golf companion python package / application
 
+[![Build Status](https://travis-ci.org/Dhunsheth/data_533_group_project.svg?branch=main)](https://travis-ci.org/Dhunsheth/data_533_group_project)
+
 **Important notes for Prof/TA**
 1. *Our module structure does not follow the requirements in that each sub-package does not have 2 sub-modules because this was not necessary for our project. In addition, we did not use inheritance because it did not make sense in our framework for the application to work. (Khalad has approved this)*
 2. *From a testing perspective, we can only test certain functions where parameters can be passed, but many of our functions reply on user response/input and so are very difficult to test via a testing script and have been not included. So we only have 3 out of the 4 test classes (Khalad approved this).*
