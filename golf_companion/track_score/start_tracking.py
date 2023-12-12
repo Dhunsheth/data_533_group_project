@@ -134,11 +134,14 @@ def __add_player():
         while player_handicap is None:
             try:
                 player_handicap = input("\nEnter player handicap (-10 < H < 30) or press Enter to skip \n*Note: Handicap must be a number \n")
-                if player_handicap != "" and player_handicap != " " and not player_handicap.isnumeric():
-                    player_handicap = None
-                if __check_value_is_number(player_handicap):
-                    if int(player_handicap) < -10 or int(player_handicap) > 30:
+                if player_handicap == "" or player_handicap == " ":
+                    player_handicap = player_handicap
+                elif __check_value_is_number(player_handicap) == True:
+                    if int(player_handicap) <= -10 or int(player_handicap) >= 30:
                         player_handicap = None
+                else:
+                    player_handicap = None
+                    
             except Exception as e:
                 print(f"Error getting player handicap: {e}")
 
