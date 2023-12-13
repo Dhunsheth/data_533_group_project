@@ -24,7 +24,7 @@ pip install --upgrade golf_companion_533_app
 # Import start_game() function
 from golf_companion_533_app import start_game
 # Run start_game() function
-b = start_game.start_game()
+game = start_game.start_game()
 
 # Import start_tracking() function
 from golf_companion_533_app.track_score import start_tracking
