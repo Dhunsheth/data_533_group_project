@@ -9,8 +9,8 @@ Group Project for Data-533 - Building a golf companion python package / applicat
 3. *The testing files can be found on the "test" branch while the main code is on the main branch {testing files: "course_test.py", "player_test.py", "pick_test.py"}.*
 4. *Can check repo insights for a history of commits made during the project. Some commits contain small changes but frequent commits, thereby increasing the number of total commits whereas others may be lower in total number but add large amounts of code.*
 
-**Link to Video Recording**: https://drive.google.com/file/d/1DP_wOCCAoEB77TxW_TgEEyn8zsP5MS8e/view?usp=drive_link
-**Link to PyPi Package**: https://pypi.org/project/golf-companion-533-app/
+**Link to Video Recording**: https://drive.google.com/file/d/1DP_wOCCAoEB77TxW_TgEEyn8zsP5MS8e/view?usp=drive_link       
+**Link to PyPi Package**: https://pypi.org/project/golf-companion-533-app/      
 
 **Introduction**
 ----------------
