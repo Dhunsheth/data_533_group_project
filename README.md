@@ -15,6 +15,27 @@ The golf_companion package has 2 sub-packages (track_score and pick_club) with t
   
 *Note: there are several times when the user can choose to "Exit the program" - choosing this option will immediately end the program without storing or displaying anything further - this is similar to a forced exit*
 
+**Steps to Import and Run**
+----------------
+```
+# Install package
+pip install --upgrade golf_companion_533_app
+
+# Import start_game() function
+from golf_companion_533_app import start_game
+# Run start_game() function
+b = start_game.start_game()
+
+# Import start_tracking() function
+from golf_companion_533_app.track_score import start_tracking
+# Run start_tracking() function
+tracked_score = start_tracking.start_tracking()
+
+# Import start_picking() function
+from golf_companion_533_app.pick_club import start_picking
+# Run start_picking() function
+club_to_hit = start_picking.start_picking(target_yardage, player_object)
+```
 golf_companion/  
 ├── \_\_init__.py  
 ├── \_\_player_class.py  
